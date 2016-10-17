@@ -10,10 +10,10 @@ module PirateBayRuby
     return if name.nil?
     number = number.to_i
 
-	  doc = Nokogiri::HTML(open("https://thepiratebay.se/search/#{URI.escape(name)}/0/7/0"))
+    doc = Nokogiri::HTML(open("https://thepiratebay.se/search/#{URI.escape(name)}/0/7/0"))
 
     cnt = 1
-	  doc.xpath('//*[@id="searchResult"]').search('tr').each do |row|
+    doc.xpath('//*[@id="searchResult"]').search('tr').each do |row|
       name = row.search('a.detLink')
       next if name.empty? # Skip empty names
 
@@ -40,8 +40,9 @@ module PirateBayRuby
         puts "#{cnt}:\tSE #{seeders}, LE #{leechers}, Date #{description}\t\t#{name.text}"
       elsif cnt == number
         # Download
-        puts "Downloading:   #{name.text}"
-        `open #{magnet_link}`
+	puts "Downloading:   #{name.text}"
+	p magnet_link
+        #`open #{magnet_link}`
         break
       end
 
