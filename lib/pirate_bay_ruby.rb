@@ -28,26 +28,26 @@ module PirateBayRuby
 
       magnet_link = ""
       row.search('a').each do |a|
-        if a["href"].match /^magnet.*/
-          magnet_link = a["href"]
-          break
-        end
+	if a["href"].match /^magnet.*/
+	  magnet_link = a["href"]
+	  break
+	end
       end
 
 
       if number == 0
-        # Print to screen
-        puts "#{cnt}:\tSE #{seeders}, LE #{leechers}, Date #{description}\t\t#{name.text}"
+	# Print to screen
+	puts "#{cnt}:\tSE #{seeders}, LE #{leechers}, Date #{description}\t\t#{name.text}"
       elsif cnt == number
-        # Download
+	# Download
 	puts "Downloading:   #{name.text}"
 	p magnet_link
-        #`open #{magnet_link}`
-        break
+	#`open #{magnet_link}`
+	break
       end
 
       cnt = cnt + 1
-	  end
+    end
 
     if cnt == 1
       "Empty search results"
